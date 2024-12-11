@@ -12,6 +12,7 @@ import com.example.booksapplication.data.entities.Language
 import com.example.booksapplication.databinding.ActivityMainBinding
 import com.example.booksapplication.view.BookListAdapter
 import com.example.booksapplication.view.utils.GeneralUtil
+import com.example.booksapplication.view.utils.SpaceDecoration
 import com.example.booksapplication.view.viewModels.MainViewModel
 import kotlin.random.Random
 
@@ -42,11 +43,12 @@ class MainActivity : AppCompatActivity() {
     private fun initRecyclerView() {
         binding.rvBooks.apply {
             adapter = bookListAdapter
+            addItemDecoration(SpaceDecoration(OFFSET))
         }
     }
 
     private fun initObserves() {
-        viewModel.bookLiveData.observe(this){
+        viewModel.bookLiveData.observe(this) {
             bookListAdapter.submitList(it)
         }
     }
@@ -68,4 +70,8 @@ class MainActivity : AppCompatActivity() {
             language = Language.entries.toTypedArray().random(),
             numberOfPages = Random.nextInt(100, 1000),
         )
+
+    companion object {
+        private const val OFFSET = 20
+    }
 }
