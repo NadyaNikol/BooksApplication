@@ -46,7 +46,7 @@ class BookListAdapter : ListAdapter<BookEntity, RecyclerView.ViewHolder>(BookIte
                 tvReleaseYearBook.text = context.getString(R.string.book_release_year, bookEntity.releaseYear)
                 tvAuthorBook.text = context.getString(R.string.book_author_name, bookEntity.author)
                 tvDescriptionBook.text = bookEntity.description
-                tvLanguageBook.text = bookEntity.language.nameLanguage
+                tvLanguageBook.text = context.getString(R.string.book_language, bookEntity.language.nameLanguage)
                 tvNumberPagesBook.text = context.getString(R.string.book_number_pages, bookEntity.numberOfPages)
 
                 Glide.with(context)
