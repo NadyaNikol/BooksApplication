@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BooksApplication</string>
+    <string name="book_author_name">Author: %1$s</string>
+    <string name="book_genre">Genre: %1$s</string>
+    <string name="book_rating">Rating: %1$d</string>
+    <string name="book_release_year">Release year: %1$d</string>
+    <string name="book_number_pages">%1$d pages</string>
 </resources>

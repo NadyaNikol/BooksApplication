@@ -58,6 +58,10 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.androidx.room.testing)
 
+    // glide
+    implementation(libs.glide)
+    ksp(libs.compiler)
+
     implementation(libs.androidx.fragment.ktx)
 
 }

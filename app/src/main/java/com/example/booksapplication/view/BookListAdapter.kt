@@ -1,12 +1,17 @@
 package com.example.booksapplication.view
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.booksapplication.R
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.databinding.ListItemBookBinding
+import com.example.booksapplication.view.utils.UrlUtil
 
 /**
  * Created by Nadya N. on 10.12.2024.
@@ -31,16 +36,24 @@ class BookListAdapter : ListAdapter<BookEntity, RecyclerView.ViewHolder>(BookIte
         private val binding: ListItemBookBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        private val context: Context = binding.root.context
+
         fun bind(bookEntity: BookEntity) {
             binding.apply {
                 tvNameBook.text = bookEntity.name
-                tvGenreBook.text = bookEntity.genre.toString()
-                tvRatingBook.text = bookEntity.rating.toString()
-                tvReleaseYearBook.text = bookEntity.releaseYear.toString()
-                tvAuthorBook.text = bookEntity.author
+                tvGenreBook.text = context.getString(R.string.book_genre, bookEntity.genre)
+                tvRatingBook.text = context.getString(R.string.book_rating, bookEntity.rating)
+                tvReleaseYearBook.text = context.getString(R.string.book_release_year, bookEntity.releaseYear)
+                tvAuthorBook.text = context.getString(R.string.book_author_name, bookEntity.author)
                 tvDescriptionBook.text = bookEntity.description
                 tvLanguageBook.text = bookEntity.language.nameLanguage
-                tvNumberPagesBook.text = bookEntity.numberOfPages.toString()
+                tvNumberPagesBook.text = context.getString(R.string.book_number_pages, bookEntity.numberOfPages)
+
+                Glide.with(context)
+                    .load(UrlUtil.getRandomImage())
+                    .apply(RequestOptions().placeholder(R.drawable.noun_sketchbook_224735))
+                    .error(R.drawable.noun_sketchbook_224735)
+                    .into(ivImageBook)
             }
         }
     }
