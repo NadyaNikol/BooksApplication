@@ -6,4 +6,6 @@
     <string name="book_release_year">Release year: %1$d</string>
     <string name="book_number_pages">%1$d pages</string>
     <string name="book_language">Language: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

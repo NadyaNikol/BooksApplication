@@ -36,6 +36,10 @@ android {
         jvmTarget = "21"
     }
 
+    viewBinding{
+        enable = true
+    }
+
     buildFeatures {
         viewBinding = true
     }
@@ -48,6 +52,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -63,6 +69,16 @@ dependencies {
     implementation(libs.glide)
     ksp(libs.compiler)
 
-    implementation(libs.androidx.fragment.ktx)
+    // navigation
+    implementation(libs.androidx.navigation.compose)
+//    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+
+//    implementation(libs.kotlinx.serialization.json)
+
+//    implementation(libs.androidx.fragment.ktx)
+
+
+//    implementation(libs.androidx.navigation.testing)
 
 }
