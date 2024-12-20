@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.example.booksapplication.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_bookDetailInfoFragment"
             app:destination="@id/bookDetailInfoFragment" />
@@ -18,5 +18,9 @@
         android:id="@+id/bookDetailInfoFragment"
         android:name="com.example.booksapplication.BookDetailInfoFragment"
         android:label="fragment_book_detail_info"
-        tools:layout="@layout/fragment_book_detail_info" />
+        tools:layout="@layout/fragment_book_detail_info">
+        <argument
+            android:name="bookEntity"
+            app:argType="com.example.booksapplication.data.entities.BookEntity" />
+    </fragment>
 </navigation>

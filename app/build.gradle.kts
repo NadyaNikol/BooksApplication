@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
 //    id("com.google.devtools.ksp")
     alias(libs.plugins.ksp)
+    alias(libs.plugins.safe.args)
 }
 
 android {
@@ -70,9 +71,9 @@ dependencies {
     ksp(libs.compiler)
 
     // navigation
-    implementation(libs.androidx.navigation.compose)
-//    implementation(libs.navigation.fragment)
-    implementation(libs.navigation.ui)
+//    implementation(libs.androidx.navigation.compose)
+//    implementation(libs.navigation.fragment.ktx)
+//    implementation(libs.navigation.ui.ktx)
 
 //    implementation(libs.kotlinx.serialization.json)
 

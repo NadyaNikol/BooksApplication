@@ -3,11 +3,13 @@ package com.example.booksapplication.view
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.booksapplication.MainFragmentDirections
 import com.example.booksapplication.R
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.databinding.ListItemBookBinding
@@ -41,13 +43,29 @@ class BookListAdapter : ListAdapter<BookEntity, RecyclerView.ViewHolder>(BookIte
         fun bind(bookEntity: BookEntity) {
             binding.apply {
                 tvNameBook.text = bookEntity.name
-                tvGenreBook.text = context.getString(R.string.book_genre, bookEntity.genre)
-                tvRatingBook.text = context.getString(R.string.book_rating, bookEntity.rating)
-                tvReleaseYearBook.text = context.getString(R.string.book_release_year, bookEntity.releaseYear)
+//                tvGenreBook.text = context.getString(R.string.book_genre, bookEntity.genre)
+//                tvRatingBook.text = context.getString(R.string.book_rating, bookEntity.rating)
+//                tvReleaseYearBook.text =
+//                    context.getString(R.string.book_release_year, bookEntity.releaseYear)
                 tvAuthorBook.text = context.getString(R.string.book_author_name, bookEntity.author)
-                tvDescriptionBook.text = bookEntity.description
-                tvLanguageBook.text = context.getString(R.string.book_language, bookEntity.language.toString().lowercase())
-                tvNumberPagesBook.text = context.getString(R.string.book_number_pages, bookEntity.numberOfPages)
+//                tvDescriptionBook.text = bookEntity.description
+//                tvLanguageBook.text = context.getString(
+//                    R.string.book_language,
+//                    bookEntity.language.toString().lowercase()
+//                )
+//                tvNumberPagesBook.text =
+//                    context.getString(R.string.book_number_pages, bookEntity.numberOfPages)
+
+//                btnShowDetailInfoBook.setOnClickListener { view ->
+//                    view.findNavController().navigate(R.id.action_mainFragment_to_bookDetailInfoFragment)
+//                }
+
+                btnShowDetailInfoBook.setOnClickListener { view ->
+                    view.findNavController()
+                        .navigate(MainFragmentDirections.actionMainFragmentToBookDetailInfoFragment(
+                            bookEntity = bookEntity
+                        ))
+                }
 
                 Glide.with(context)
                     .load(UrlUtil.getRandomImage())
