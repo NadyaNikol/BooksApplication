@@ -3,6 +3,8 @@ package com.example.booksapplication.data.repositories
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.room.BookDao
 import com.example.booksapplication.data.room.BookDbEntity
+import com.example.booksapplication.view.utils.fromEntity
+import com.example.booksapplication.view.utils.toEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -24,11 +26,11 @@ class RoomBookRepository(
     }
 
     override suspend fun insertEntity(bookEntity: BookEntity) = withContext(Dispatchers.IO) {
-        bookDao.insertBook(BookDbEntity.fromEntity(bookEntity))
+        bookDao.insertBook(bookEntity.fromEntity())
     }
 
     override suspend fun updateEntity(bookEntity: BookEntity) = withContext(Dispatchers.IO) {
-        bookDao.updateBook(BookDbEntity.fromEntity(bookEntity))
+        bookDao.updateBook(bookEntity.fromEntity())
     }
 
     suspend fun getBookByName(name: String): Flow<List<BookEntity>> = withContext(Dispatchers.IO) {

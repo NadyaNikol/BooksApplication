@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.entities.Genre
 import com.example.booksapplication.data.entities.Language
 
@@ -31,33 +30,4 @@ data class BookDbEntity(
     val description: String,
     val language: Language,
     val numberOfPages: Int,
-) {
-
-    fun toEntity() = BookEntity(
-        id = this.id,
-        name = this.name,
-        genre = this.genre,
-        rating = this.rating,
-        releaseYear = this.releaseYear,
-        author = this.author,
-        description = this.description,
-        language = this.language,
-        numberOfPages = this.numberOfPages
-    )
-
-    companion object {
-        const val TABLE_NAME = "books"
-
-        fun fromEntity(bookEntity: BookEntity) = BookDbEntity(
-            id = bookEntity.id,
-            name = bookEntity.name,
-            genre = bookEntity.genre,
-            rating = bookEntity.rating,
-            releaseYear = bookEntity.releaseYear,
-            author = bookEntity.author,
-            description = bookEntity.description,
-            language = bookEntity.language,
-            numberOfPages = bookEntity.numberOfPages
-        )
-    }
-}
+)
