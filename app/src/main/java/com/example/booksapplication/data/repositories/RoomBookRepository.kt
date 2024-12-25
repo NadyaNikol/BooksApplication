@@ -14,8 +14,8 @@ import kotlinx.coroutines.withContext
 class RoomBookRepository(
     private val bookDao: BookDao,
 
-    ) : BookRepository {
-    override suspend fun getBooksList(): Flow<List<BookEntity>> = withContext(Dispatchers.IO) {
+    ) : SaveRepository<BookEntity>, GetRepository<BookEntity> {
+    override suspend fun getListEntities(): Flow<List<BookEntity>> = withContext(Dispatchers.IO) {
         return@withContext bookDao.getBooksList().map { bookList: List<BookDbEntity> ->
             bookList.map {
                 it.toEntity()
@@ -23,15 +23,15 @@ class RoomBookRepository(
         }
     }
 
-    override suspend fun insertBook(bookEntity: BookEntity) = withContext(Dispatchers.IO) {
+    override suspend fun insertEntity(bookEntity: BookEntity) = withContext(Dispatchers.IO) {
         bookDao.insertBook(BookDbEntity.fromEntity(bookEntity))
     }
 
-    override suspend fun updateBook(bookEntity: BookEntity) = withContext(Dispatchers.IO) {
+    override suspend fun updateEntity(bookEntity: BookEntity) = withContext(Dispatchers.IO) {
         bookDao.updateBook(BookDbEntity.fromEntity(bookEntity))
     }
 
-    override suspend fun getBookByName(name: String): Flow<List<BookEntity>> = withContext(Dispatchers.IO) {
+    suspend fun getBookByName(name: String): Flow<List<BookEntity>> = withContext(Dispatchers.IO) {
         return@withContext bookDao.getBookByName(name).map { bookList: List<BookDbEntity> ->
             bookList.map {
                 it.toEntity()

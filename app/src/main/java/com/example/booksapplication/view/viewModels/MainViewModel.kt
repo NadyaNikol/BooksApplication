@@ -20,21 +20,22 @@ class MainViewModel : ViewModel() {
 
     fun initData() {
         viewModelScope.launch {
-            repository.getBooksList().collect {
+            repository.getListEntities().collect {
                 _bookLiveData.value = it
             }
+            // service.getBooksList()
         }
     }
 
     fun insert(bookEntity: BookEntity) {
         viewModelScope.launch {
-            repository.insertBook(bookEntity)
+            repository.insertEntity(bookEntity)
         }
     }
 
     fun update(bookEntity: BookEntity) {
         viewModelScope.launch {
-            repository.updateBook(bookEntity)
+            repository.updateEntity(bookEntity)
         }
     }
 
