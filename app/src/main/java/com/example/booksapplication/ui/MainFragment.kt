@@ -2,9 +2,7 @@ package com.example.booksapplication.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.booksapplication.R
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.entities.Genre
 import com.example.booksapplication.data.entities.Language
@@ -15,17 +13,16 @@ import com.example.booksapplication.view.utils.SpaceDecoration
 import com.example.booksapplication.view.viewModels.MainViewModel
 import kotlin.random.Random
 
-class MainFragment : Fragment(R.layout.fragment_main) {
-
-    private var _binding: FragmentMainBinding? = null
-    private val binding: FragmentMainBinding? get() = _binding
+class MainFragment :
+    BaseFragment<FragmentMainBinding>(
+        FragmentMainBinding::inflate
+    ) {
 
     private val viewModel by viewModels<MainViewModel>()
     private lateinit var bookListAdapter: BookListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentMainBinding.bind(view)
         bookListAdapter = BookListAdapter()
 
         viewModel.initData()
@@ -34,18 +31,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         initObserves()
     }
 
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
-    }
-
-
     private fun initRecyclerView() {
-        binding?.apply {
-            rvBooks.apply {
-                adapter = bookListAdapter
-                addItemDecoration(SpaceDecoration(OFFSET))
-            }
+        binding.rvBooks.apply {
+            adapter = bookListAdapter
+            addItemDecoration(SpaceDecoration(OFFSET))
         }
     }
 
@@ -56,10 +45,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun initListeners() {
-        binding?.apply {
-            fabAddBook.setOnClickListener {
-                viewModel.insert(generateRandomBook())
-            }
+        binding.fabAddBook.setOnClickListener {
+            viewModel.insert(generateRandomBook())
         }
     }
 
