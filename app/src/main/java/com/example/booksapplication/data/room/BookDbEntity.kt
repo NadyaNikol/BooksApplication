@@ -7,13 +7,12 @@ import androidx.room.PrimaryKey
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.entities.Genre
 import com.example.booksapplication.data.entities.Language
-import com.example.booksapplication.data.room.BookDbEntity.Companion.TABLE_NAME
 
 /**
  * Created by Nadya N. on 10.12.2024.
  */
 @Entity(
-    tableName = TABLE_NAME,
+//    tableName = "books",
     indices = [
         Index("name", unique = true)
     ]

@@ -4,6 +4,8 @@ plugins {
 //    id("com.google.devtools.ksp")
     alias(libs.plugins.ksp)
     alias(libs.plugins.safe.args)
+    alias(libs.plugins.kotlin.parcelize)
+//    id("kotlin-parcelize")
 }
 
 android {

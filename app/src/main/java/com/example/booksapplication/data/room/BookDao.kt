@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.booksapplication.data.room.BookDbEntity.Companion.TABLE_NAME
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -13,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface BookDao {
 
-    @Query("SELECT * FROM $TABLE_NAME")
+    @Query("SELECT * FROM Bookdbentity")
     fun getBooksList(): Flow<List<BookDbEntity>>
 
     @Insert
@@ -22,6 +21,6 @@ interface BookDao {
     @Update
     fun updateBook(bookDbEntity: BookDbEntity)
 
-    @Query("SELECT * FROM $TABLE_NAME WHERE NAME LIKE :name")
+    @Query("SELECT * FROM Bookdbentity WHERE NAME LIKE :name")
     fun getBookByName(name: String):Flow<List<BookDbEntity>>
 }

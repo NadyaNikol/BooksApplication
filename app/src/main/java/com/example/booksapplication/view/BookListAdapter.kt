@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.booksapplication.MainFragmentDirections
 import com.example.booksapplication.R
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.databinding.ListItemBookBinding
+import com.example.booksapplication.ui.MainFragmentDirections
 import com.example.booksapplication.view.utils.UrlUtil
 
 /**
