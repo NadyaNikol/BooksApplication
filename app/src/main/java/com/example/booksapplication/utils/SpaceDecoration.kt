@@ -1,4 +1,4 @@
-package com.example.booksapplication.view.utils
+package com.example.booksapplication.utils
 
 import android.graphics.Rect
 import android.view.View

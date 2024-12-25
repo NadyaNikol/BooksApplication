@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.booksapplication.data.entities.BookEntity
-import com.example.booksapplication.services.BookService.BookService
+import com.example.booksapplication.services.BookService
 import kotlinx.coroutines.launch
 
 /**

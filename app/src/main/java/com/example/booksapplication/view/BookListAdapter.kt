@@ -13,7 +13,8 @@ import com.example.booksapplication.R
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.databinding.ListItemBookBinding
 import com.example.booksapplication.ui.MainFragmentDirections
-import com.example.booksapplication.view.utils.UrlUtil
+import com.example.booksapplication.utils.UrlUtil
+
 
 /**
  * Created by Nadya N. on 10.12.2024.

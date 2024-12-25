@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.booksapplication.R
 import com.example.booksapplication.databinding.FragmentBookDetailInfoBinding
-import com.example.booksapplication.view.utils.UrlUtil
+import com.example.booksapplication.utils.UrlUtil
 
 class BookDetailInfoFragment :
     BaseFragment<FragmentBookDetailInfoBinding>(

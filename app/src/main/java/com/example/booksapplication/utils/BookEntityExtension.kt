@@ -1,4 +1,4 @@
-package com.example.booksapplication.view.utils
+package com.example.booksapplication.utils
 
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.room.BookDbEntity

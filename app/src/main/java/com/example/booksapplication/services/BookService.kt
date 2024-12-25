@@ -1,4 +1,4 @@
-package com.example.booksapplication.services.BookService
+package com.example.booksapplication.services
 
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.repositories.RepositoriesLocator

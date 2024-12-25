@@ -7,9 +7,9 @@ import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.entities.Genre
 import com.example.booksapplication.data.entities.Language
 import com.example.booksapplication.databinding.FragmentMainBinding
+import com.example.booksapplication.utils.GeneralUtil
+import com.example.booksapplication.utils.SpaceDecoration
 import com.example.booksapplication.view.BookListAdapter
-import com.example.booksapplication.view.utils.GeneralUtil
-import com.example.booksapplication.view.utils.SpaceDecoration
 import com.example.booksapplication.view.viewModels.MainViewModel
 import kotlin.random.Random
 

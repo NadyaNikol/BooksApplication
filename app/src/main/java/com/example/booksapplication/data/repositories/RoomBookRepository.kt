@@ -3,8 +3,8 @@ package com.example.booksapplication.data.repositories
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.room.BookDao
 import com.example.booksapplication.data.room.BookDbEntity
-import com.example.booksapplication.view.utils.fromEntity
-import com.example.booksapplication.view.utils.toEntity
+import com.example.booksapplication.utils.fromEntity
+import com.example.booksapplication.utils.toEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

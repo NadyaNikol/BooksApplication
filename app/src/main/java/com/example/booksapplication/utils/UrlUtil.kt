@@ -1,4 +1,4 @@
-package com.example.booksapplication.view.utils
+package com.example.booksapplication.utils
 
 /**
  * Created by Nadya N. on 11.12.2024.
