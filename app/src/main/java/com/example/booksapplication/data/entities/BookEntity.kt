@@ -1,10 +1,7 @@
 package com.example.booksapplication.data.entities
 
-import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-
-//import kotlinx.parcelize.Parcelize
 
 /**
  * Created by Nadya N. on 10.12.2024.
@@ -20,4 +17,5 @@ data class BookEntity(
     val description: String,
     val language: Language,
     val numberOfPages: Int,
+    val imageUrl: String
 ) : Parcelable

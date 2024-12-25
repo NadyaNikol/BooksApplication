@@ -9,6 +9,7 @@ import com.example.booksapplication.data.entities.Language
 import com.example.booksapplication.databinding.FragmentMainBinding
 import com.example.booksapplication.utils.GeneralUtil
 import com.example.booksapplication.utils.SpaceDecoration
+import com.example.booksapplication.utils.UrlUtil
 import com.example.booksapplication.view.BookListAdapter
 import com.example.booksapplication.view.viewModels.MainViewModel
 import kotlin.random.Random
@@ -60,6 +61,7 @@ class MainFragment :
             description = GeneralUtil.generateRandomString(Random.nextInt(100, 300)),
             language = Language.entries.toTypedArray().random(),
             numberOfPages = Random.nextInt(100, 1000),
+            imageUrl = UrlUtil.getRandomImage()
         )
 
     companion object {

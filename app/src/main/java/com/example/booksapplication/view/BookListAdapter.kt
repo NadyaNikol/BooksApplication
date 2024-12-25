@@ -69,7 +69,7 @@ class BookListAdapter : ListAdapter<BookEntity, RecyclerView.ViewHolder>(BookIte
                 }
 
                 Glide.with(context)
-                    .load(UrlUtil.getRandomImage())
+                    .load(bookEntity.imageUrl)
                     .apply(RequestOptions().placeholder(R.drawable.noun_sketchbook_224735))
                     .error(R.drawable.noun_sketchbook_224735)
                     .into(ivImageBook)

@@ -16,7 +16,8 @@ fun BookDbEntity.toEntity() = BookEntity(
     author = this.author,
     description = this.description,
     language = this.language,
-    numberOfPages = this.numberOfPages
+    numberOfPages = this.numberOfPages,
+    imageUrl = this.imageUrl
 )
 
 fun BookEntity.fromEntity() = BookDbEntity(
@@ -28,5 +29,6 @@ fun BookEntity.fromEntity() = BookDbEntity(
     author = this.author,
     description = this.description,
     language = this.language,
-    numberOfPages = this.numberOfPages
+    numberOfPages = this.numberOfPages,
+    imageUrl = this.imageUrl
 )

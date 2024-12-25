@@ -30,4 +30,5 @@ data class BookDbEntity(
     val description: String,
     val language: Language,
     val numberOfPages: Int,
+    val imageUrl: String
 )

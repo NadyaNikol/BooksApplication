@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.booksapplication.R
 import com.example.booksapplication.databinding.FragmentBookDetailInfoBinding
-import com.example.booksapplication.utils.UrlUtil
 
 class BookDetailInfoFragment :
     BaseFragment<FragmentBookDetailInfoBinding>(
@@ -40,7 +39,7 @@ class BookDetailInfoFragment :
 
             //TODO rewrite it using caching Glide
             Glide.with(this@BookDetailInfoFragment)
-                .load(UrlUtil.getRandomImage())
+                .load(bookEntity.imageUrl)
                 .apply(RequestOptions().placeholder(R.drawable.noun_sketchbook_224735))
                 .error(R.drawable.noun_sketchbook_224735)
                 .into(ivImageBookDetail)
