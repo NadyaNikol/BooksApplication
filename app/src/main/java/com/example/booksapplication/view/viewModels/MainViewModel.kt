@@ -1,7 +1,5 @@
 package com.example.booksapplication.view.viewModels
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.useCases.GetBookByNameUseCase
 import com.example.booksapplication.data.useCases.GetBookListUseCase
@@ -14,7 +12,7 @@ import kotlinx.coroutines.launch
 /**
  * Created by Nadya N. on 10.12.2024.
  */
-class MainViewModel : ViewModel() {
+class MainViewModel : BaseViewModel() {
 
     private val service = BookService()
     private val getBookListUseCase = GetBookListUseCase(service)
@@ -24,17 +22,18 @@ class MainViewModel : ViewModel() {
     private val _bookFlow: MutableStateFlow<List<BookEntity>> = MutableStateFlow(emptyList())
     val bookFlow: StateFlow<List<BookEntity>> = _bookFlow
 
-
     fun initData() {
-        viewModelScope.launch {
+        ioScope.launch {
             getBookListUseCase.invoke().collect { books ->
-                _bookFlow.value = books
+                mainScope.launch {
+                    _bookFlow.value = books
+                }
             }
         }
     }
 
     fun insert(bookEntity: BookEntity) {
-        viewModelScope.launch {
+        ioScope.launch {
             insertBookUseCase.invoke(bookEntity)
         }
     }
@@ -45,8 +44,8 @@ class MainViewModel : ViewModel() {
 //        }
 //    }
 
-    fun searchByName(name:String){
-        viewModelScope.launch {
+    fun searchByName(name: String) {
+        ioScope.launch {
             getBookByNameUseCase.invoke(name)
         }
     }
