@@ -3,6 +3,7 @@ package com.example.booksapplication.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.entities.Genre
 import com.example.booksapplication.data.entities.Language
@@ -35,6 +36,7 @@ class MainFragment :
     private fun initRecyclerView() {
         binding.rvBooks.apply {
             adapter = bookListAdapter
+            layoutManager = GridLayoutManager(context, 2)
             addItemDecoration(SpaceDecoration(OFFSET))
         }
     }
