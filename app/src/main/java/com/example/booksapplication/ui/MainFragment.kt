@@ -11,6 +11,7 @@ import com.example.booksapplication.databinding.FragmentMainBinding
 import com.example.booksapplication.utils.GeneralUtil
 import com.example.booksapplication.utils.SpaceDecoration
 import com.example.booksapplication.utils.UrlUtil
+import com.example.booksapplication.utils.collect
 import com.example.booksapplication.view.BookListAdapter
 import com.example.booksapplication.view.viewModels.MainViewModel
 import kotlin.random.Random
@@ -42,8 +43,8 @@ class MainFragment :
     }
 
     private fun initObserves() {
-        viewModel.bookLiveData.observe(viewLifecycleOwner) {
-            bookListAdapter.submitList(it)
+        collect(viewModel.bookFlow) { books ->
+            bookListAdapter.submitList(books)
         }
     }
 
