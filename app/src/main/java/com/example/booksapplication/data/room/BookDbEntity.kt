@@ -11,7 +11,6 @@ import com.example.booksapplication.data.entities.Language
  * Created by Nadya N. on 10.12.2024.
  */
 @Entity(
-//    tableName = "books",
     indices = [
         Index("name", unique = true)
     ]
