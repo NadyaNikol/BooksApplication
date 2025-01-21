@@ -1,11 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-//    id("com.google.devtools.ksp")
     alias(libs.plugins.ksp)
     alias(libs.plugins.safe.args)
     alias(libs.plugins.kotlin.parcelize)
-//    id("kotlin-parcelize")
 }
 
 android {
@@ -57,31 +55,23 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+//    implementation(libs.hibernate.validator)
+
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.truth)
 
     //room
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
-//    annotationProcessor(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.androidx.room.testing)
 
     // glide
     implementation(libs.glide)
     ksp(libs.compiler)
-
-    // navigation
-//    implementation(libs.androidx.navigation.compose)
-//    implementation(libs.navigation.fragment.ktx)
-//    implementation(libs.navigation.ui.ktx)
-
-//    implementation(libs.kotlinx.serialization.json)
-
-//    implementation(libs.androidx.fragment.ktx)
-
-
-//    implementation(libs.androidx.navigation.testing)
 
 }
