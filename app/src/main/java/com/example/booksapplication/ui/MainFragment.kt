@@ -1,6 +1,8 @@
 package com.example.booksapplication.ui
 
 import android.os.Bundle
+import android.util.Log
+import android.view.Gravity
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -12,8 +14,11 @@ import com.example.booksapplication.utils.GeneralUtil
 import com.example.booksapplication.utils.SpaceDecoration
 import com.example.booksapplication.utils.UrlUtil
 import com.example.booksapplication.utils.collect
+import com.example.booksapplication.utils.setGravity
+import com.example.booksapplication.utils.setMargins
 import com.example.booksapplication.view.BookListAdapter
 import com.example.booksapplication.view.viewModels.MainViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlin.random.Random
 
 class MainFragment :
@@ -31,7 +36,7 @@ class MainFragment :
         viewModel.initData()
         initRecyclerView()
         initListeners()
-        initObserves()
+        initObserves(view)
     }
 
     private fun initRecyclerView() {
@@ -42,9 +47,28 @@ class MainFragment :
         }
     }
 
-    private fun initObserves() {
+    private fun initObserves(view: View) {
         collect(viewModel.bookFlow) { books ->
             bookListAdapter.submitList(books)
+        }
+
+        collect(viewModel.insertResult) {
+
+            if (it != null) {
+                val snackbarMessage = if (it) {
+                    "The book has been successfully added"
+                } else {
+                    "Sorry, an error occurred. Repeat the action after a few seconds"
+                }
+
+                val snackBar = Snackbar.make(view, snackbarMessage, Snackbar.LENGTH_SHORT)
+                snackBar.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL)
+                snackBar.setMargins(0, 100, 0, 0)
+
+                snackBar.show()
+            } else {
+                Log.d(this::class.java.simpleName, "initObserves: it null")
+            }
         }
     }
 
@@ -58,7 +82,7 @@ class MainFragment :
         BookEntity(
             name = "Book-${GeneralUtil.generateRandomString(10)}",
             genre = Genre.entries.toTypedArray().random(),
-            rating = Random.nextInt(1, 5),
+            rating = Random.nextInt(-1, 5),
             releaseYear = Random.nextInt(1980, 2022),
             author = "Author-${GeneralUtil.generateRandomString(7)}",
             description = GeneralUtil.generateRandomString(Random.nextInt(100, 300)),
