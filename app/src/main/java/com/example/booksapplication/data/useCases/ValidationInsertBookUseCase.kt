@@ -9,40 +9,35 @@ class ValidationInsertBookUseCase() {
 
     fun execute(bookEntity: BookEntity): ValidationResult {
         if (bookEntity.name.isBlank()) {
-            return ValidationResult(success = false, errorMessage = "name is empty")
-        }
-
-        if (bookEntity.genre.toString().isBlank()) {
-            return ValidationResult(success = false, errorMessage = "genre is empty")
+            return ValidationResult(success = false, errorMessage = "Name is empty")
         }
 
         if (bookEntity.rating < 1 || bookEntity.rating > 10) {
             return ValidationResult(
                 success = false,
-                errorMessage = "rating must be between 1 and 10"
+                errorMessage = "Rating must be between 1 and 10"
             )
         }
 
-//            if (bookEntity.releaseYear > Year.now().value) {
-//                return ValidationResult(success = false, errorMessage = "release year must be in the past or present")
-//            }
+        if (!Regex("^[0-9]{4}\$").matches(bookEntity.releaseYear.toString())) {
+            return ValidationResult(
+                success = false,
+                errorMessage = "Release year must be a positive four-digit number"
+            )
+        }
 
         if (bookEntity.author.isBlank()) {
-            return ValidationResult(success = false, errorMessage = "author is empty")
+            return ValidationResult(success = false, errorMessage = "Author is empty")
         }
 
         if (bookEntity.description.isBlank()) {
-            return ValidationResult(success = false, errorMessage = "description is empty")
-        }
-
-        if (bookEntity.language.toString().isBlank()) {
-            return ValidationResult(success = false, errorMessage = "language is empty")
+            return ValidationResult(success = false, errorMessage = "Description is empty")
         }
 
         if (bookEntity.numberOfPages < 1) {
             return ValidationResult(
                 success = false,
-                errorMessage = "number of pages must be at least 1"
+                errorMessage = "Number of pages must be at least 1"
             )
         }
 
