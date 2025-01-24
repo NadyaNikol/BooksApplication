@@ -25,6 +25,10 @@ class MainViewModel : BaseViewModel() {
     private val _bookFlow: MutableStateFlow<List<BookEntity>> = MutableStateFlow(emptyList())
     val bookFlow: StateFlow<List<BookEntity>> = _bookFlow
 
+    fun clearInsertResult(){
+        _insertResult.value = null
+    }
+
     fun initData() {
         ioScope.launch {
             getBookListUseCase.invoke().collect { books ->
@@ -36,6 +40,7 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun insert(bookEntity: BookEntity) {
+        clearInsertResult()
         ioScope.launch {
             val result = insertBookUseCase.invoke(bookEntity)
             _insertResult.value = result

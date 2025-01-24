@@ -39,6 +39,11 @@ class MainFragment :
         initObserves(view)
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.clearInsertResult()
+    }
+
     private fun initRecyclerView() {
         binding.rvBooks.apply {
             adapter = bookListAdapter
