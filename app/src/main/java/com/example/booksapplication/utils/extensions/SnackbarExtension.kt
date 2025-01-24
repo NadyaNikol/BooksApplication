@@ -1,4 +1,4 @@
-package com.example.booksapplication.utils
+package com.example.booksapplication.utils.extensions
 
 import android.widget.FrameLayout
 import com.google.android.material.snackbar.Snackbar

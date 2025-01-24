@@ -1,7 +1,7 @@
 package com.example.booksapplication.data.useCases
 
 import com.example.booksapplication.data.entities.BookEntity
-import com.example.booksapplication.services.BookService
+import com.example.booksapplication.data.services.BookService
 import kotlinx.coroutines.flow.Flow
 
 /**

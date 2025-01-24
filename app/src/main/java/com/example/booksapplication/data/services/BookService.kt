@@ -1,10 +1,10 @@
-package com.example.booksapplication.services
+package com.example.booksapplication.data.services
 
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.repositories.RepositoriesLocator
 import com.example.booksapplication.data.room.BookDbEntity
-import com.example.booksapplication.utils.fromEntity
-import com.example.booksapplication.utils.toEntity
+import com.example.booksapplication.utils.extensions.fromEntity
+import com.example.booksapplication.utils.extensions.toEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

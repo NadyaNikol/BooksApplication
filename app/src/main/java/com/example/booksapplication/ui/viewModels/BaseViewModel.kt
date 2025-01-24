@@ -1,4 +1,4 @@
-package com.example.booksapplication.view.viewModels
+package com.example.booksapplication.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope

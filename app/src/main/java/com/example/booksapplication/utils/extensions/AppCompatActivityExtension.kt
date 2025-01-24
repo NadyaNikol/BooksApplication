@@ -1,6 +1,6 @@
-package com.example.booksapplication.utils
+package com.example.booksapplication.utils.extensions
 
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -12,11 +12,11 @@ import kotlinx.coroutines.launch
  * Created by Nadya N. on 16.01.2025.
  */
 
-inline fun <reified E, reified F : Flow<E>> Fragment.collect(
+inline fun <reified E, reified F : Flow<E>> AppCompatActivity.collect(
     flow: F,
     crossinline collector: suspend (E) -> Unit
 ) {
-    viewLifecycleOwner.lifecycleScope.launch {
+    lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
             flow.collectLatest {
                 collector(it)

@@ -1,4 +1,4 @@
-package com.example.booksapplication.utils
+package com.example.booksapplication.utils.extensions
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package com.example.booksapplication.view
+package com.example.booksapplication.applications
 
 import android.app.Application
 import com.example.booksapplication.data.repositories.RepositoriesLocator

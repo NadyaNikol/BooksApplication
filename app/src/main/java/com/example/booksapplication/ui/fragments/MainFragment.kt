@@ -1,4 +1,4 @@
-package com.example.booksapplication.ui
+package com.example.booksapplication.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -13,11 +13,11 @@ import com.example.booksapplication.databinding.FragmentMainBinding
 import com.example.booksapplication.utils.GeneralUtil
 import com.example.booksapplication.utils.SpaceDecoration
 import com.example.booksapplication.utils.UrlUtil
-import com.example.booksapplication.utils.collect
-import com.example.booksapplication.utils.setGravity
-import com.example.booksapplication.utils.setMargins
-import com.example.booksapplication.view.BookListAdapter
-import com.example.booksapplication.view.viewModels.MainViewModel
+import com.example.booksapplication.utils.extensions.collect
+import com.example.booksapplication.utils.extensions.setGravity
+import com.example.booksapplication.utils.extensions.setMargins
+import com.example.booksapplication.ui.adapters.BookListAdapter
+import com.example.booksapplication.ui.viewModels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlin.random.Random
 

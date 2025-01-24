@@ -1,4 +1,4 @@
-package com.example.booksapplication.view
+package com.example.booksapplication.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.booksapplication.R
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.databinding.ListItemBookBinding
-import com.example.booksapplication.ui.MainFragmentDirections
+import com.example.booksapplication.ui.fragments.MainFragmentDirections
 
 
 /**

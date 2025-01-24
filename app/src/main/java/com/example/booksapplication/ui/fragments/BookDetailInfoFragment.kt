@@ -1,4 +1,4 @@
-package com.example.booksapplication.ui
+package com.example.booksapplication.ui.fragments
 
 import android.os.Bundle
 import android.view.View

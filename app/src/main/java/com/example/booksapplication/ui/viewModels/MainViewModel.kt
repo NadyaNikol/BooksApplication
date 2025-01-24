@@ -1,10 +1,10 @@
-package com.example.booksapplication.view.viewModels
+package com.example.booksapplication.ui.viewModels
 
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.useCases.GetBookByNameUseCase
 import com.example.booksapplication.data.useCases.GetBookListUseCase
 import com.example.booksapplication.data.useCases.InsertBookUseCase
-import com.example.booksapplication.services.BookService
+import com.example.booksapplication.data.services.BookService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

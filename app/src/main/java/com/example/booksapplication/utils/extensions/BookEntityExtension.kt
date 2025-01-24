@@ -1,4 +1,4 @@
-package com.example.booksapplication.utils
+package com.example.booksapplication.utils.extensions
 
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.room.BookDbEntity
