@@ -45,7 +45,6 @@ class MainViewModel : BaseViewModel() {
             val result = insertBookUseCase.invoke(bookEntity)
             _insertResult.value = result
         }
-        _insertResult.value = null
     }
 
 //    fun update(bookEntity: BookEntity) {
