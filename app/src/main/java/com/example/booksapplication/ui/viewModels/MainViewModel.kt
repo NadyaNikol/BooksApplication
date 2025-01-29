@@ -42,8 +42,8 @@ class MainViewModel : BaseViewModel() {
     fun insert(bookEntity: BookEntity) {
         clearInsertResult()
         ioScope.launch {
-            val result = insertBookUseCase.invoke(bookEntity)
-            _insertResult.value = result
+            _insertResult.emit(insertBookUseCase(bookEntity))
+//            _insertResult.value = result
         }
     }
 
