@@ -47,8 +47,7 @@ class MainFragment :
     private fun initRecyclerView() {
         binding.rvBooks.apply {
             adapter = bookListAdapter
-            layoutManager = GridLayoutManager(context, 2)
-            addItemDecoration(SpaceDecoration(OFFSET))
+//            addItemDecoration(SpaceDecoration(OFFSET))
         }
     }
 

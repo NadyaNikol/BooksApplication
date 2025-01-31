@@ -62,11 +62,13 @@ class BookListAdapter : ListAdapter<BookEntity, RecyclerView.ViewHolder>(BookIte
 //                    view.findNavController().navigate(R.id.action_mainFragment_to_bookDetailInfoFragment)
 //                }
 
-                btnShowDetailInfoBook.setOnClickListener { view ->
+                this@BookItemHolder.itemView.setOnClickListener { view ->
                     view.findNavController()
-                        .navigate(MainFragmentDirections.actionMainFragmentToBookDetailInfoFragment(
-                            bookEntity = bookEntity
-                        ))
+                        .navigate(
+                            MainFragmentDirections.actionMainFragmentToBookDetailInfoFragment(
+                                bookEntity = bookEntity
+                            )
+                        )
                 }
 
                 Glide.with(context)

@@ -4,8 +4,10 @@
     <string name="book_genre">Genre: %1$s</string>
     <string name="book_rating">Rating: %1$d</string>
     <string name="book_release_year">Release year: %1$d</string>
-    <string name="book_number_pages">%1$d pages</string>
+    <string name="book_number_pages">Pages: %1$d</string>
     <string name="book_language">Language: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_book">Add book</string>
+    <string name="image_book">Image book</string>
 </resources>
