@@ -15,7 +15,10 @@ object UrlUtil {
         "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1461452762i/58696.jpg",
         "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474169725i/15881.jpg",
         "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6.jpg",
-        "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5.jpg"
+        "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630547330i/5.jpg",
+        "https://www.megakniga.com.ua/uploads/cache/Products/Product_images_346388/dc8f05_w1600.jpg",
+        "https://laboratory.ua/files/products/kniga-noci_.1800x1200.png",
+        "https://laboratory.ua/files/products/62847_125633.1800x1200.jpg"
 
     )
 

@@ -23,7 +23,7 @@ data class BookDbEntity(
     val name: String,
 
     val genre: Genre,
-    val rating: Int,
+    val rating: Float,
     val releaseYear: Int,
     val author: String,
     val description: String,

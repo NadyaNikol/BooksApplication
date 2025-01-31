@@ -87,10 +87,10 @@ class MainFragment :
         BookEntity(
             name = "Book-${GeneralUtil.generateRandomString(10)}",
             genre = Genre.entries.toTypedArray().random(),
-            rating = Random.nextInt(-1, 5),
+            rating = 1 + Random.nextFloat() * 4,
             releaseYear = Random.nextInt(1980, 2022),
             author = "Author-${GeneralUtil.generateRandomString(7)}",
-            description = GeneralUtil.generateRandomString(Random.nextInt(100, 300)),
+            description = GeneralUtil.generateRandomString(Random.nextInt(100, 3000)),
             language = Language.entries.toTypedArray().random(),
             numberOfPages = Random.nextInt(100, 1000),
             imageUrl = UrlUtil.getRandomImage()

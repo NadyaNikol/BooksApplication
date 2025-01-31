@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.booksapplication.R
 import com.example.booksapplication.databinding.FragmentBookDetailInfoBinding
+import com.example.booksapplication.utils.extensions.showToLowercase
 
 class BookDetailInfoFragment :
     BaseFragment<FragmentBookDetailInfoBinding>(
@@ -26,16 +27,22 @@ class BookDetailInfoFragment :
             tvNameBookDetail.text = bookEntity.name
             tvGenreBookDetail.text = getString(R.string.book_genre, bookEntity.genre)
             tvRatingBookDetail.text = getString(R.string.book_rating, bookEntity.rating)
+            tvGenreBookDetail.text =
+                getString(R.string.book_genre, bookEntity.genre.showToLowercase())
             tvReleaseYearBookDetail.text =
                 getString(R.string.book_release_year, bookEntity.releaseYear)
             tvAuthorBookDetail.text = getString(R.string.book_author_name, bookEntity.author)
-            tvDescriptionBookDetail.text = bookEntity.description
             tvLanguageBookDetail.text = getString(
                 R.string.book_language,
-                bookEntity.language.toString().lowercase()
+                bookEntity.language.showToLowercase()
             )
             tvNumberPagesBookDetail.text =
                 getString(R.string.book_number_pages, bookEntity.numberOfPages)
+
+            tvDescriptionBookDetail.apply {
+                text = bookEntity.description
+                movementMethod = ScrollingMovementMethod()
+            }
 
             //TODO rewrite it using caching Glide
             Glide.with(this@BookDetailInfoFragment)
