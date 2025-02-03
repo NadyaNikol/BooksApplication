@@ -5,8 +5,10 @@ import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.booksapplication.R
 import com.example.booksapplication.databinding.FragmentBookDetailInfoBinding
+import com.example.booksapplication.utils.LoadImageBuilder
 import com.example.booksapplication.utils.extensions.showToLowercase
 
 class BookDetailInfoFragment :
@@ -43,12 +45,12 @@ class BookDetailInfoFragment :
                 movementMethod = ScrollingMovementMethod()
             }
 
-            //TODO rewrite it using caching Glide
-            Glide.with(this@BookDetailInfoFragment)
-                .load(bookEntity.imageUrl)
-//                .apply(RequestOptions().placeholder(R.drawable.noun_sketchbook_224735))
-                .error(R.drawable.noun_sketchbook_224735)
-                .into(ivImageBookDetail)
+            LoadImageBuilder(Glide.with(this@BookDetailInfoFragment))
+                .url(bookEntity.imageUrl)
+                .errorDrawable(R.drawable.noun_sketchbook_224735)
+                .placeholder(R.drawable.noun_sketchbook_224735)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .loadInto(ivImageBookDetail)
         }
     }
 }

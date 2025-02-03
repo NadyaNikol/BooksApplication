@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.booksapplication.R
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.databinding.ListItemBookBinding
 import com.example.booksapplication.ui.fragments.MainFragmentDirections
+import com.example.booksapplication.utils.LoadImageBuilder
 import com.example.booksapplication.utils.extensions.showToLowercase
 
 
@@ -46,21 +47,11 @@ class BookListAdapter : ListAdapter<BookEntity, RecyclerView.ViewHolder>(BookIte
                 tvNameBook.text = bookEntity.name
                 tvGenreBook.text =
                     context.getString(R.string.book_genre, bookEntity.genre.showToLowercase())
-//                tvRatingBook.text = context.getString(R.string.book_rating, bookEntity.rating)
-//                tvReleaseYearBook.text =
-//                    context.getString(R.string.book_release_year, bookEntity.releaseYear)
                 tvAuthorBook.text = context.getString(R.string.book_author_name, bookEntity.author)
-//                tvDescriptionBook.text = bookEntity.description
                 tvLanguageBook.text = context.getString(
                     R.string.book_language,
                     bookEntity.language.toString().lowercase()
                 )
-//                tvNumberPagesBook.text =
-//                    context.getString(R.string.book_number_pages, bookEntity.numberOfPages)
-
-//                btnShowDetailInfoBook.setOnClickListener { view ->
-//                    view.findNavController().navigate(R.id.action_mainFragment_to_bookDetailInfoFragment)
-//                }
 
                 this@BookItemHolder.itemView.setOnClickListener { view ->
                     view.findNavController()
@@ -71,11 +62,12 @@ class BookListAdapter : ListAdapter<BookEntity, RecyclerView.ViewHolder>(BookIte
                         )
                 }
 
-                Glide.with(context)
-                    .load(bookEntity.imageUrl)
-                    .apply(RequestOptions().placeholder(R.drawable.noun_sketchbook_224735))
-                    .error(R.drawable.noun_sketchbook_224735)
-                    .into(ivImageBook)
+                LoadImageBuilder(Glide.with(context))
+                    .url(bookEntity.imageUrl)
+                    .errorDrawable(R.drawable.noun_sketchbook_224735)
+                    .placeholder(R.drawable.noun_sketchbook_224735)
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .loadInto(ivImageBook)
             }
         }
     }
