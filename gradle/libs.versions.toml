@@ -16,6 +16,8 @@ ksp = "2.0.21-1.0.27"
 navigationKtx = "2.8.5"
 safeArgs = "2.8.5"
 truth = "1.4.4"
+monitor = "1.7.2"
+junitKtx = "1.2.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,6 +39,8 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 androidx-room-testing = { module = "androidx.room:room-testing" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
+androidx-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 
 
 [plugins]
