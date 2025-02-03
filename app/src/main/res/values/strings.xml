@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BooksApplication</string>
+    <string name="app_name">Books</string>
     <string name="book_author_name">Author: %1$s</string>
     <string name="book_genre">Genre: %1$s</string>
     <string name="book_rating">Rating: %1$d</string>
