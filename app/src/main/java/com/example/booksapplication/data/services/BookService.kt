@@ -5,6 +5,7 @@ import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.repositories.RepositoriesLocator
 import com.example.booksapplication.data.room.BookDbEntity
 import com.example.booksapplication.data.useCases.ValidationInsertBookUseCase
+import com.example.booksapplication.data.useCases.ValidationResult
 import com.example.booksapplication.utils.extensions.fromEntity
 import com.example.booksapplication.utils.extensions.toEntity
 import kotlinx.coroutines.flow.Flow
@@ -25,16 +26,21 @@ class BookService {
     }
 
     suspend fun insertEntity(bookEntity: BookEntity): Boolean {
-        val validationResult = ValidationInsertBookUseCase().execute(bookEntity)
-        if (!validationResult.success) {
-            Log.d(
-                this::class.java.simpleName,
-                "validation book error: ${validationResult.errorMessage}"
-            )
-            return false
+        val validationInsertBookUseCase = ValidationInsertBookUseCase()
+
+        return when(val validationResult = validationInsertBookUseCase(bookEntity)){
+            is ValidationResult.Success -> {
+                repository.insertEntity(bookEntity.fromEntity())
+                true
+            }
+            is ValidationResult.Error -> {
+                Log.d(
+                    this::class.java.simpleName,
+                    "validation book error: ${validationResult.exception.message}"
+                )
+                false
+            }
         }
-        repository.insertEntity(bookEntity.fromEntity())
-        return true
     }
 
     suspend fun updateEntity(bookEntity: BookEntity) {
