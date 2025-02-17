@@ -1,13 +1,18 @@
 package com.example.booksapplication.ui.viewModels
 
 import com.example.booksapplication.data.entities.BookEntity
+import com.example.booksapplication.data.entities.Genre
+import com.example.booksapplication.data.entities.Language
 import com.example.booksapplication.data.useCases.GetBookByNameUseCase
 import com.example.booksapplication.data.useCases.GetBookListUseCase
 import com.example.booksapplication.data.useCases.InsertBookUseCase
 import com.example.booksapplication.data.services.BookService
+import com.example.booksapplication.utils.GeneralUtil
+import com.example.booksapplication.utils.UrlUtil
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 /**
  * Created by Nadya N. on 10.12.2024.
@@ -29,7 +34,7 @@ class MainViewModel : BaseViewModel() {
         _insertResult.value = null
     }
 
-    fun initData() {
+    init {
         ioScope.launch {
             getBookListUseCase.invoke().collect { books ->
                 mainScope.launch {
@@ -39,10 +44,10 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
-    fun insert(bookEntity: BookEntity) {
+    fun insertRandomBook() {
         clearInsertResult()
         ioScope.launch {
-            _insertResult.emit(insertBookUseCase(bookEntity))
+            _insertResult.emit(insertBookUseCase(generateRandomBook()))
 //            _insertResult.value = result
         }
     }
@@ -58,5 +63,18 @@ class MainViewModel : BaseViewModel() {
             getBookByNameUseCase.invoke(name)
         }
     }
+
+    private fun generateRandomBook(): BookEntity =
+        BookEntity(
+            name = "Book-${GeneralUtil.generateRandomString(10)}",
+            genre = Genre.entries.toTypedArray().random(),
+            rating = 1 + Random.nextFloat() * 4,
+            releaseYear = Random.nextInt(1980, 2022),
+            author = "Author-${GeneralUtil.generateRandomString(7)}",
+            description = GeneralUtil.generateRandomString(Random.nextInt(100, 3000)),
+            language = Language.entries.toTypedArray().random(),
+            numberOfPages = Random.nextInt(100, 1000),
+            imageUrl = UrlUtil.getRandomImage()
+        )
 
 }

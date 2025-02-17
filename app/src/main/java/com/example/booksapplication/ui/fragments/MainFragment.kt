@@ -5,21 +5,13 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.booksapplication.data.entities.BookEntity
-import com.example.booksapplication.data.entities.Genre
-import com.example.booksapplication.data.entities.Language
 import com.example.booksapplication.databinding.FragmentMainBinding
-import com.example.booksapplication.utils.GeneralUtil
-import com.example.booksapplication.utils.SpaceDecoration
-import com.example.booksapplication.utils.UrlUtil
 import com.example.booksapplication.utils.extensions.collect
 import com.example.booksapplication.utils.extensions.setGravity
 import com.example.booksapplication.utils.extensions.setMargins
 import com.example.booksapplication.ui.adapters.BookListAdapter
 import com.example.booksapplication.ui.viewModels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlin.random.Random
 
 class MainFragment :
     BaseFragment<FragmentMainBinding>(
@@ -33,7 +25,6 @@ class MainFragment :
         super.onViewCreated(view, savedInstanceState)
         bookListAdapter = BookListAdapter()
 
-        viewModel.initData()
         initRecyclerView()
         initListeners()
         initObserves(view)
@@ -78,22 +69,9 @@ class MainFragment :
 
     private fun initListeners() {
         binding.fabAddBook.setOnClickListener {
-            viewModel.insert(generateRandomBook())
+            viewModel.insertRandomBook()
         }
     }
-
-    private fun generateRandomBook(): BookEntity =
-        BookEntity(
-            name = "Book-${GeneralUtil.generateRandomString(10)}",
-            genre = Genre.entries.toTypedArray().random(),
-            rating = 1 + Random.nextFloat() * 4,
-            releaseYear = Random.nextInt(1980, 2022),
-            author = "Author-${GeneralUtil.generateRandomString(7)}",
-            description = GeneralUtil.generateRandomString(Random.nextInt(100, 3000)),
-            language = Language.entries.toTypedArray().random(),
-            numberOfPages = Random.nextInt(100, 1000),
-            imageUrl = UrlUtil.getRandomImage()
-        )
 
     companion object {
         private const val OFFSET = 20
