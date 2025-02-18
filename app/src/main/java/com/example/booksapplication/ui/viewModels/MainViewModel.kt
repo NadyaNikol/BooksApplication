@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.entities.Genre
 import com.example.booksapplication.data.entities.Language
-import com.example.booksapplication.data.services.BookService
+import com.example.booksapplication.data.services.BookDataSource
 import com.example.booksapplication.data.useCases.GetBookListUseCase
 import com.example.booksapplication.data.useCases.InsertBookUseCase
 import com.example.booksapplication.utils.GeneralUtil
@@ -23,10 +23,10 @@ import kotlin.random.Random
  */
 class MainViewModel : ViewModel() {
 
-    private val service = BookService()
-    private val getBookListUseCase = GetBookListUseCase(service)
+    private val bookDataSource = BookDataSource()
+    private val getBookListUseCase = GetBookListUseCase(bookDataSource)
 //    private val getBookByNameUseCase = GetBookByNameUseCase(service)
-    private val insertBookUseCase = InsertBookUseCase(service)
+    private val insertBookUseCase = InsertBookUseCase(bookDataSource)
 
     private val _insertResult: MutableStateFlow<Boolean?> = MutableStateFlow(null)
     val insertResult: StateFlow<Boolean?> = _insertResult

@@ -3,7 +3,7 @@ package com.example.booksapplication.data.useCases
 import com.example.booksapplication.BaseTest
 import com.example.booksapplication.data.DataInit.generateRandomBook
 import com.example.booksapplication.data.DataInit.generateRandomBookValidationError
-import com.example.booksapplication.data.services.BookService
+import com.example.booksapplication.data.services.BookDataSource
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -15,16 +15,16 @@ import org.mockito.kotlin.mock
  */
 class InsertBookUseCaseTest: BaseTest() {
 
-    private lateinit var service: BookService
+    private lateinit var bookDataSource: BookDataSource
 
     @Before
     fun setUp() {
-        service = mock<BookService>()
+        bookDataSource = mock<BookDataSource>()
     }
 
     @Test
     fun `add book successfully`() = runBlocking {
-        val insertBook = InsertBookUseCase(service)
+        val insertBook = InsertBookUseCase(bookDataSource)
         val book = generateRandomBook()
 
         val result = insertBook.invoke(book)
@@ -33,7 +33,7 @@ class InsertBookUseCaseTest: BaseTest() {
 
     @Test
     fun `add book error`() = runBlocking {
-        val insertBook = InsertBookUseCase(service)
+        val insertBook = InsertBookUseCase(bookDataSource)
         val book = generateRandomBookValidationError()
 
         val result = insertBook.invoke(book)

@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 /**
  * Created by Nadya N. on 22.12.2024.
  */
-class BookService {
+class BookDataSource {
     private val repository = RepositoriesLocator.repository
 
     suspend fun getListEntities(): Flow<List<BookEntity>> {
