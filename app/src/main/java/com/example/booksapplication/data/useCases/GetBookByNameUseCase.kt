@@ -1,6 +1,6 @@
 package com.example.booksapplication.data.useCases
 
-import com.example.booksapplication.data.services.BookDataSource
+import com.example.booksapplication.data.dataSources.BookDataSource
 
 /**
  * Created by Nadya N. on 16.01.2025.

@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.entities.Genre
 import com.example.booksapplication.data.entities.Language
-import com.example.booksapplication.data.services.BookDataSource
+import com.example.booksapplication.data.dataSources.BookDataSource
 import com.example.booksapplication.data.useCases.GetBookListUseCase
 import com.example.booksapplication.data.useCases.InsertBookUseCase
 import com.example.booksapplication.utils.GeneralUtil

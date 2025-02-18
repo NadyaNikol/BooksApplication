@@ -3,7 +3,7 @@ package com.example.booksapplication.data.useCases
 import com.example.booksapplication.BaseTest
 import com.example.booksapplication.data.DataInit.generateRandomBook
 import com.example.booksapplication.data.DataInit.generateRandomBookValidationError
-import com.example.booksapplication.data.services.BookDataSource
+import com.example.booksapplication.data.dataSources.BookDataSource
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
