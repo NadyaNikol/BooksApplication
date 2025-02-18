@@ -21,7 +21,6 @@ import kotlin.random.Random
 /**
  * Created by Nadya N. on 10.12.2024.
  */
-class MainViewModel : BaseViewModel() {
 class MainViewModel : ViewModel() {
 
     private val service = BookService()
