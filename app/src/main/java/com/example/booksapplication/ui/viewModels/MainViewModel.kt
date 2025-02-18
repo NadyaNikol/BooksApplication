@@ -1,27 +1,32 @@
 package com.example.booksapplication.ui.viewModels
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.booksapplication.data.entities.BookEntity
 import com.example.booksapplication.data.entities.Genre
 import com.example.booksapplication.data.entities.Language
-import com.example.booksapplication.data.useCases.GetBookByNameUseCase
+import com.example.booksapplication.data.services.BookService
 import com.example.booksapplication.data.useCases.GetBookListUseCase
 import com.example.booksapplication.data.useCases.InsertBookUseCase
-import com.example.booksapplication.data.services.BookService
 import com.example.booksapplication.utils.GeneralUtil
 import com.example.booksapplication.utils.UrlUtil
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 /**
  * Created by Nadya N. on 10.12.2024.
  */
 class MainViewModel : BaseViewModel() {
+class MainViewModel : ViewModel() {
 
     private val service = BookService()
     private val getBookListUseCase = GetBookListUseCase(service)
-    private val getBookByNameUseCase = GetBookByNameUseCase(service)
+//    private val getBookByNameUseCase = GetBookByNameUseCase(service)
     private val insertBookUseCase = InsertBookUseCase(service)
 
     private val _insertResult: MutableStateFlow<Boolean?> = MutableStateFlow(null)
@@ -35,9 +40,10 @@ class MainViewModel : BaseViewModel() {
     }
 
     init {
-        ioScope.launch {
-            getBookListUseCase.invoke().collect { books ->
-                mainScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
+            getBookListUseCase().collect { books ->
+
+                withContext(Dispatchers.Main) {
                     _bookFlow.value = books
                 }
             }
@@ -46,9 +52,10 @@ class MainViewModel : BaseViewModel() {
 
     fun insertRandomBook() {
         clearInsertResult()
-        ioScope.launch {
-            _insertResult.emit(insertBookUseCase(generateRandomBook()))
-//            _insertResult.value = result
+        viewModelScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                _insertResult.update { insertBookUseCase(generateRandomBook()) }
+            }
         }
     }
 
@@ -58,11 +65,11 @@ class MainViewModel : BaseViewModel() {
 //        }
 //    }
 
-    fun searchByName(name: String) {
-        ioScope.launch {
-            getBookByNameUseCase.invoke(name)
-        }
-    }
+//    fun searchByName(name: String) {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            getBookByNameUseCase.invoke(name)
+//        }
+//    }
 
     private fun generateRandomBook(): BookEntity =
         BookEntity(
