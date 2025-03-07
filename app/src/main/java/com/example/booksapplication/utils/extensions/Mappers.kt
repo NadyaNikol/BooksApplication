@@ -10,7 +10,7 @@ import com.example.booksapplication.domain.entities.BookUIEntity
 
 fun BookApiResponse.mapToDBEntity() =
     BookDbEntity(
-        bookApiId = this.id,
+        id = this.id,
         title = this.title,
         authors = this.authors,
         imageUrl = this.image,
@@ -20,7 +20,8 @@ fun BookApiResponse.mapToDBEntity() =
 fun List<BookDbEntity>.mapToUI() =
     this.map {
         BookUIEntity(
-            name = it.title,
+            id = it.id,
+            title = it.title,
             imageUrl = it.imageUrl
         )
     }

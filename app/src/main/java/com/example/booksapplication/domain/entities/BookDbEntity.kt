@@ -9,9 +9,8 @@ import androidx.room.PrimaryKey
 @Entity
 data class BookDbEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
+    val id: String,
 
-    val bookApiId:String,
     val title: String,
     val authors: String,
     val imageUrl: String,

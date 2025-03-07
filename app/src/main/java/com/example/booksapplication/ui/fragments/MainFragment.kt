@@ -6,8 +6,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booksapplication.databinding.FragmentMainBinding
 import com.example.booksapplication.ui.adapters.BookListAdapter
+import com.example.booksapplication.ui.listeners.EndlessScrollListener
 import com.example.booksapplication.ui.viewModels.MainViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -23,7 +26,13 @@ class MainFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bookListAdapter = BookListAdapter()
+        bookListAdapter = BookListAdapter { id ->
+            findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToBookDetailInfoFragment(
+                    bookId = id
+                )
+            )
+        }
 
         initRecyclerView()
 //        initListeners()
@@ -31,11 +40,21 @@ class MainFragment :
     }
 
     private fun initRecyclerView() {
+        val layoutManagerRV = LinearLayoutManager(requireContext())
         binding.rvBooks.apply {
             adapter = bookListAdapter
+            layoutManager = layoutManagerRV
+
+            addOnScrollListener(object: EndlessScrollListener(layoutManagerRV){
+                override fun loadMoreItems() {
+                    viewModel.loadMoreItems()
+                }
+
+                override fun isLastPage() = true
+                override fun isLoading() = true
+            })
 //            addItemDecoration(SpaceDecoration(OFFSET))
         }
-        // лісенер на якомі ітемі
     }
 
     private fun initObserves() {
@@ -44,7 +63,6 @@ class MainFragment :
                 viewModel.uiState.onEach {
                     bookListAdapter.submitList(it.books)
                 }.launchIn(this)
-
             }
         }
     }

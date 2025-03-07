@@ -72,4 +72,10 @@ dependencies {
     implementation(libs.glide)
     ksp(libs.compiler)
 
+    // gson
+    implementation(libs.gson)
+
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }

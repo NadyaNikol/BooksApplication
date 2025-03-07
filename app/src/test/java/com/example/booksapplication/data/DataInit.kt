@@ -8,9 +8,9 @@ import kotlin.random.Random
  */
 object DataInit {
 
-    fun generateRandomBook(): BookUIEntity = BookUIEntity(
+//    fun generateRandomBook(): BookUIEntity = BookUIEntity(
 //        id = Random.nextLong(),
-        name = "Book ${Random.nextLong()}",
+//        title = "Book ${Random.nextLong()}",
 //        genre = Genre.entries[Random.nextInt(Genre.entries.size)],
 //        rating = 1 + Random.nextFloat() * 4,
 //        releaseYear = Random.nextInt(1455, 2023),
@@ -18,12 +18,12 @@ object DataInit {
 //        description = "Description ${Random.nextLong()}",
 //        language = Language.entries[Random.nextInt(Language.entries.size)],
 //        numberOfPages = Random.nextInt(1, 1001),
-        imageUrl = "http://example.com/book/${Random.nextLong()}.jpg"
-    )
+//        imageUrl = "http://example.com/book/${Random.nextLong()}.jpg"
+//    )
 
-    fun generateRandomBookValidationError(): BookUIEntity = BookUIEntity(
+//    fun generateRandomBookValidationError(): BookUIEntity = BookUIEntity(
 //        id = Random.nextLong(),
-        name = "",
+//        title = "",
 //        genre = Genre.entries[Random.nextInt(Genre.entries.size)],
 //        rating = -1 + Random.nextFloat() * -4,
 //        releaseYear = Random.nextInt(20, 300),
@@ -31,6 +31,6 @@ object DataInit {
 //        description = "",
 //        language = Language.entries[Random.nextInt(Language.entries.size)],
 //        numberOfPages = Random.nextInt(-100, 0),
-        imageUrl = ""
-    )
+//        imageUrl = ""
+//    )
 }

@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class BookDetailInfoApiResponse(
     @SerializedName("status") val status: String,
-    @SerializedName("id") val bookId: String,
+    @SerializedName("id") val id: String,
     @SerializedName("title") val title: String,
     @SerializedName("subtitle") val subtitle: String,
     @SerializedName("description") val description: String,

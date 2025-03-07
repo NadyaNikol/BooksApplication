@@ -16,10 +16,8 @@ import androidx.room.PrimaryKey
 )
 data class BookDetailInfoDbEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val id: String,
 
-    val bookId: Long,
-    val bookApiId: String,
     val title: String,
     val year: Int,
     val authors: String,

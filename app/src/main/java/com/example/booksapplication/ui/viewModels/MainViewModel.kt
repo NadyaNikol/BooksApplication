@@ -7,7 +7,6 @@ import com.example.booksapplication.ui.MainFragmentState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
@@ -30,22 +29,18 @@ class MainViewModel : ViewModel() {
     }
 
     private val _uiState = MutableStateFlow(MainFragmentState())
-    val uiState: StateFlow<MainFragmentState> = _uiState.asStateFlow()
+    val uiState: StateFlow<MainFragmentState> = _uiState
 
     init {
         bookFlow.launchIn(viewModelScope)
+        loadMoreItems()
+    }
 
+    fun loadMoreItems(){
         viewModelScope.launch(Dispatchers.IO) {
+            _uiState.update { it.copy(isLoading = true) }
             repository.getAllBooks()
         }
-//            getBookListUseCase().collect { books ->
-//
-//                withContext(Dispatchers.Main) {
-//                    Log.d("OBSERV_TEST", ": init")
-//                    _bookFlow.value = books
-//                }
-//            }
-//        }
     }
 
 //    fun insertRandomBook() {
@@ -54,12 +49,6 @@ class MainViewModel : ViewModel() {
 //            withContext(Dispatchers.Main) {
 //                _insertResult.update { insertBookUseCase(generateRandomBook()) }
 //            }
-//        }
-//    }
-
-//    fun update(bookEntity: BookEntity) {
-//        viewModelScope.launch {
-//            service.updateEntity(bookEntity)
 //        }
 //    }
 
