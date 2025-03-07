@@ -1,17 +1,17 @@
 package com.example.booksapplication.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.booksapplication.databinding.FragmentMainBinding
-import com.example.booksapplication.utils.extensions.collect
-import com.example.booksapplication.utils.extensions.setGravity
-import com.example.booksapplication.utils.extensions.setMargins
 import com.example.booksapplication.ui.adapters.BookListAdapter
 import com.example.booksapplication.ui.viewModels.MainViewModel
-import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class MainFragment :
     BaseFragment<FragmentMainBinding>(
@@ -26,13 +26,8 @@ class MainFragment :
         bookListAdapter = BookListAdapter()
 
         initRecyclerView()
-        initListeners()
-        initObserves(view)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModel.clearInsertResult()
+//        initListeners()
+        initObserves()
     }
 
     private fun initRecyclerView() {
@@ -40,41 +35,18 @@ class MainFragment :
             adapter = bookListAdapter
 //            addItemDecoration(SpaceDecoration(OFFSET))
         }
+        // лісенер на якомі ітемі
     }
 
-    private fun initObserves(view: View) {
-        collect(viewModel.bookFlow) { books ->
-            bookListAdapter.submitList(books)
-        }
+    private fun initObserves() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.onEach {
+                    bookListAdapter.submitList(it.books)
+                }.launchIn(this)
 
-        collect(viewModel.insertResult) {
-
-            if (it != null) {
-                val snackbarMessage = if (it) {
-                    "The book has been successfully added"
-                } else {
-                    "Sorry, an error occurred. Repeat the action after a few seconds"
-                }
-
-                val snackBar = Snackbar.make(view, snackbarMessage, Snackbar.LENGTH_SHORT)
-                snackBar.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL)
-                snackBar.setMargins(0, 100, 0, 0)
-
-                snackBar.show()
-            } else {
-                Log.d(this::class.java.simpleName, "initObserves: it null")
             }
         }
-    }
-
-    private fun initListeners() {
-        binding.fabAddBook.setOnClickListener {
-            viewModel.insertRandomBook()
-        }
-    }
-
-    companion object {
-        private const val OFFSET = 20
     }
 
 }

@@ -1,7 +1,7 @@
-package com.example.booksapplication.applications
+package com.example.booksapplication
 
 import android.app.Application
-import com.example.booksapplication.data.repositories.RepositoriesLocator
+import com.example.booksapplication.domain.repositories.RepositoriesLocator
 
 /**
  * Created by Nadya N. on 10.12.2024.

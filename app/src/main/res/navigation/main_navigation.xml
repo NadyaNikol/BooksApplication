@@ -19,8 +19,6 @@
         android:name="com.example.booksapplication.ui.fragments.BookDetailInfoFragment"
         android:label="fragment_book_detail_info"
         tools:layout="@layout/fragment_book_detail_info">
-        <argument
-            android:name="bookEntity"
-            app:argType="com.example.booksapplication.data.entities.BookEntity" />
+
     </fragment>
 </navigation>

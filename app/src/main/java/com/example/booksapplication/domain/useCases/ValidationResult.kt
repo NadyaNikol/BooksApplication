@@ -1,4 +1,4 @@
-package com.example.booksapplication.data.useCases
+package com.example.booksapplication.domain.useCases
 
 /**
  * Created by Nadya N. on 20.01.2025.

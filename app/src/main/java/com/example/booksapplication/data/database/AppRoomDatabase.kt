@@ -1,7 +1,8 @@
-package com.example.booksapplication.data.room
+package com.example.booksapplication.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.booksapplication.domain.entities.BookDbEntity
 
 /**
  * Created by Nadya N. on 10.12.2024.
