@@ -21,7 +21,6 @@
         tools:layout="@layout/fragment_book_detail_info">
         <argument
             android:name="bookId"
-            app:argType="String"/>
-
+            app:argType="long"/>
     </fragment>
 </navigation>

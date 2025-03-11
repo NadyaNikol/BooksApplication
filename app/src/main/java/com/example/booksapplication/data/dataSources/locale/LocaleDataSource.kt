@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface LocaleDataSource {
 
     fun getAllBooks(): Flow<List<BookDbEntity>>
+    fun searchBooksByTitle(title:String): Flow<List<BookDbEntity>>
     suspend fun getBookById(id: String): Flow<BookDbEntity>
     suspend fun upsertBooks(books: List<BookDbEntity>)
     suspend fun upsertBook(book: BookDbEntity)

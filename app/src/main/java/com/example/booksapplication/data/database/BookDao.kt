@@ -16,14 +16,17 @@ interface BookDao {
     @Query("SELECT * FROM Bookdbentity")
     fun getAllBooks(): Flow<List<BookDbEntity>>
 
+    @Query("SELECT * FROM BookDbEntity WHERE TITLE LIKE :title")
+    fun searchAllBooksByTitle(title:String):Flow<List<BookDbEntity>>
+
     @Query("SELECT * FROM Bookdbentity WHERE ID = :id")
     fun getBookWithDetailInfoById(id: String):Flow<BookDbEntity>
 
     @Upsert
     fun upsertBook(bookDbEntity: BookDbEntity)
 
-    @Insert
-    fun insertBooks(books: List<BookDbEntity>)
+    @Upsert
+    fun upsertBooks(books: List<BookDbEntity>)
 
     @Insert
     fun insertBook(bookDbEntity: BookDbEntity)

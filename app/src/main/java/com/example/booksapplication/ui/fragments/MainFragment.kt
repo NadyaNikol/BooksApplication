@@ -50,8 +50,10 @@ class MainFragment :
                     viewModel.loadMoreItems()
                 }
 
-                override fun isLastPage() = true
-                override fun isLoading() = true
+                val value = viewModel.uiStatePageable.value
+
+                override fun isLastPage()  = value.isLastPage
+                override fun isLoading() =  value.isLoading
             })
 //            addItemDecoration(SpaceDecoration(OFFSET))
         }
@@ -60,7 +62,7 @@ class MainFragment :
     private fun initObserves() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.onEach {
+                viewModel.uiStatePageable.onEach {
                     bookListAdapter.submitList(it.books)
                 }.launchIn(this)
             }

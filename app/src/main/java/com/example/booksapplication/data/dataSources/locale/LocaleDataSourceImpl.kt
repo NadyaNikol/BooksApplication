@@ -13,6 +13,9 @@ class LocaleDataSourceImpl(
     override fun getAllBooks(): Flow<List<BookDbEntity>> =
         dao.getAllBooks()
 
+    override fun searchBooksByTitle(title: String): Flow<List<BookDbEntity>> =
+        dao.searchAllBooksByTitle(title)
+
     override suspend fun getBookById(id: String): Flow<BookDbEntity> =
         dao.getBookWithDetailInfoById(id)
 
@@ -21,7 +24,7 @@ class LocaleDataSourceImpl(
     }
 
     override suspend fun upsertBooks(books: List<BookDbEntity>) =
-        dao.insertBooks(books)
+        dao.upsertBooks(books)
 
     override suspend fun insertBook(bookDbEntity: BookDbEntity) =
         dao.insertBook(bookDbEntity)
