@@ -11,13 +11,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.booksapplication.R
 import com.example.booksapplication.databinding.ListItemBookBinding
 import com.example.booksapplication.domain.entities.BookUIEntity
-import com.example.booksapplication.utils.LoadImageBuilder
 
 
 /**
  * Created by Nadya N. on 10.12.2024.
  */
-class BookListAdapter(private val onClick: (String) -> Unit) :
+class BookListAdapter(private val onClick: (Long) -> Unit) :
     ListAdapter<BookUIEntity, RecyclerView.ViewHolder>(BookItemsCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -37,7 +36,7 @@ class BookListAdapter(private val onClick: (String) -> Unit) :
 
     private class BookItemHolder(
         private val binding: ListItemBookBinding,
-        private val listener: (String) -> Unit,
+        private val listener: (Long) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private val context: Context = binding.root.context
@@ -48,7 +47,7 @@ class BookListAdapter(private val onClick: (String) -> Unit) :
             }
 
             binding.apply {
-                tvNameBook.text = bookUIEntity.title
+                tvTitleBook.text = bookUIEntity.title
 //                tvGenreBook.text =
 //                    context.getString(R.string.book_genre, bookUIEntity.genre.showToLowercase())
 //                tvAuthorBook.text = context.getString(R.string.book_author_name, bookUIEntity.author)
@@ -68,12 +67,12 @@ class BookListAdapter(private val onClick: (String) -> Unit) :
 //                        )
 //                }
 
-                LoadImageBuilder(Glide.with(context))
-                    .url(bookUIEntity.imageUrl)
-                    .errorDrawable(R.drawable.noun_sketchbook_224735)
+                Glide.with(context)
+                    .load(bookUIEntity.imageUrl)
+                    .error(R.drawable.noun_sketchbook_224735)
                     .placeholder(R.drawable.noun_sketchbook_224735)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
-                    .loadInto(ivImageBook)
+                    .into(ivImageBook)
             }
         }
     }

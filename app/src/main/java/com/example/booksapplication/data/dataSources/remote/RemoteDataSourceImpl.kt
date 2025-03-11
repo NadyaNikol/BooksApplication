@@ -13,13 +13,13 @@ class RemoteDataSourceImpl: RemoteDataSource {
     private val bookApi: BookApi
         get() = DataSourceLocator.provideBookApi()
 
-    override suspend fun getAllBooks(): BooksApiStatusResponse {
-        val response = bookApi.getAllBooks().body()
-        return if (response?.status != "ok") throw Throwable(message = ERROR_DATA_RESPONSE) else response
+    override suspend fun getAllBooks(offset:Int, query:String?): BooksApiStatusResponse {
+        val response = bookApi.getAllBooks(offset , query).body()
+        return if (response == null || response.books.isEmpty()) throw Throwable(message = ERROR_DATA_RESPONSE) else response
     }
 
-    override suspend fun getBookById(bookId: String): BookDetailInfoApiResponse {
+    override suspend fun getBookById(bookId: Long): BookDetailInfoApiResponse {
         val response = bookApi.getBookById(bookId).body()
-        return if (response?.status != "ok") throw Throwable(message = ERROR_DATA_RESPONSE) else response
+        return if (response == null || response.description.isBlank()) throw Throwable(message = ERROR_DATA_RESPONSE) else response
     }
 }

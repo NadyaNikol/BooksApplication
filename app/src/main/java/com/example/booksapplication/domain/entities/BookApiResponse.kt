@@ -6,10 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by Nadya N. on 05.03.2025.
  */
 data class BookApiResponse(
-    @SerializedName("id") val id: String,
+    @SerializedName("id") val id: Long,
     @SerializedName("title") val title: String,
-    @SerializedName("subtitle") val subtitle: String,
-    @SerializedName("authors") val authors: String,
     @SerializedName("image") val image: String,
-    @SerializedName("url") val url: String,
 )

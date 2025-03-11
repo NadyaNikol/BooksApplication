@@ -12,9 +12,9 @@ fun BookApiResponse.mapToDBEntity() =
     BookDbEntity(
         id = this.id,
         title = this.title,
-        authors = this.authors,
+//        authors = this.authors,
         imageUrl = this.image,
-        url = this.url,
+//        url = this.url,
     )
 
 fun List<BookDbEntity>.mapToUI() =

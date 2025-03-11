@@ -27,7 +27,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/BookShortDescriptionTextStyle"
-                android:id="@+id/tv_name_book"
+                android:id="@+id/tv_title_book"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

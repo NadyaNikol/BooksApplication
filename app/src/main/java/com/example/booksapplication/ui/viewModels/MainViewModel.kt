@@ -1,12 +1,11 @@
 package com.example.booksapplication.ui.viewModels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.booksapplication.domain.repositories.BookRepositoryImpl
-import com.example.booksapplication.ui.MainFragmentState
-import kotlinx.coroutines.Dispatchers
+import com.example.booksapplication.ui.MainFragmentPageableState
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
@@ -19,27 +18,57 @@ class MainViewModel : ViewModel() {
 
     private val repository = BookRepositoryImpl()
 
-    private val bookFlow = repository.booksFlow.onEach { books ->
-        _uiState.update {
-            it.copy(
-                isLoading = false,
-                books = books
-            )
-        }
-    }
+//    private val bookFlow = repository.booksFlow.onEach { books ->
+//        if (books.isEmpty()) {
+//            loadMoreItems()
+//        }
+//
+//        _uiState.update {
+//            it.copy(
+////                isLoading = false,
+//                books = books
+//            )
+//        }
+//        _uiStatePageable.update {
+//            it.copy(
+//                isLoading = false,
+//                isLastPage = repository.isLastPage,
+//                offset = books.size
+//            )
+//        }
+//    }
 
-    private val _uiState = MutableStateFlow(MainFragmentState())
-    val uiState: StateFlow<MainFragmentState> = _uiState
+//    private val _uiState = MutableStateFlow(MainFragmentState())
+    private val _uiStatePageable = MutableStateFlow(MainFragmentPageableState())
+    val uiStatePageable = _uiStatePageable
+//    val uiState: StateFlow<MainFragmentState> = _uiState
+
+    private val bookFlow = repository.booksFlow
+        .onEach { books ->
+            Log.d("INIT_BOOKS", ": ${books.size}")
+            if (books.isEmpty()) {
+                loadMoreItems()
+            }
+
+            _uiStatePageable.update {
+                it.copy(
+                    isLoading = false,
+                    isLastPage = repository.isLastPage,
+                    offset = books.size,
+                    books = books
+                )
+            }
+        }
 
     init {
         bookFlow.launchIn(viewModelScope)
-        loadMoreItems()
+//        loadMoreItems()
     }
 
-    fun loadMoreItems(){
-        viewModelScope.launch(Dispatchers.IO) {
-            _uiState.update { it.copy(isLoading = true) }
-            repository.getAllBooks()
+    fun loadMoreItems(query: String = "") {
+        viewModelScope.launch {
+            repository.upsertAllBooks(_uiStatePageable.value.offset, query)
+            _uiStatePageable.update { it.copy(isLoading = true) }
         }
     }
 
