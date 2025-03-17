@@ -1,4 +1,4 @@
-package com.example.booksapplication.data.dataSources.remote
+package com.example.booksapplication.data
 
 import com.example.booksapplication.data.api.BookApi
 import com.example.booksapplication.data.api.BookApi.Companion.BASE_URL

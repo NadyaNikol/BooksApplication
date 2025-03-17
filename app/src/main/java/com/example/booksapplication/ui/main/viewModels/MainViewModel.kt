@@ -3,7 +3,7 @@ package com.example.booksapplication.ui.main.viewModels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.booksapplication.domain.repositories.BookRepositoryImpl
+import com.example.booksapplication.data.BooksRepositoryImpl
 import com.example.booksapplication.ui.MainFragmentPageableState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
  */
 class MainViewModel : ViewModel() {
 
-    private val repository = BookRepositoryImpl()
+    private val repository = BooksRepositoryImpl()
 
 //    private val bookFlow = repository.booksFlow.onEach { books ->
 //        if (books.isEmpty()) {
