@@ -1,4 +1,4 @@
-package com.example.booksapplication.ui.fragments
+package com.example.booksapplication.ui
 
 import android.os.Bundle
 import android.util.Log

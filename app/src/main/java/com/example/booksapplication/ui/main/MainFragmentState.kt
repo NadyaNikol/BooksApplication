@@ -1,4 +1,4 @@
-package com.example.booksapplication.ui
+package com.example.booksapplication.ui.main
 
 import com.example.booksapplication.domain.entities.BookUIEntity
 

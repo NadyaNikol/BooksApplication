@@ -1,4 +1,4 @@
-package com.example.booksapplication.ui.listeners
+package com.example.booksapplication.ui.main.listeners
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView

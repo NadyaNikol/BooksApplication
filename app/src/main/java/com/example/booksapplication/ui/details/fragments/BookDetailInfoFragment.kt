@@ -1,8 +1,9 @@
-package com.example.booksapplication.ui.fragments
+package com.example.booksapplication.ui.details.fragments
 
 import android.os.Bundle
 import android.view.View
 import com.example.booksapplication.databinding.FragmentBookDetailInfoBinding
+import com.example.booksapplication.ui.BaseFragment
 
 class BookDetailInfoFragment :
     BaseFragment<FragmentBookDetailInfoBinding>(

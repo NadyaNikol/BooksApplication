@@ -9,9 +9,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booksapplication.databinding.FragmentMainBinding
-import com.example.booksapplication.ui.adapters.BookListAdapter
-import com.example.booksapplication.ui.listeners.EndlessScrollListener
-import com.example.booksapplication.ui.viewModels.MainViewModel
+import com.example.booksapplication.ui.BaseFragment
+import com.example.booksapplication.ui.main.adapters.BookListAdapter
+import com.example.booksapplication.ui.main.listeners.EndlessScrollListener
+import com.example.booksapplication.ui.main.viewModels.MainViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
