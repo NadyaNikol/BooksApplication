@@ -1,8 +1,8 @@
 package com.example.booksapplication.data
 
 import android.util.Log
-import com.example.booksapplication.data.api.BookApi
-import com.example.booksapplication.data.database.BookDao
+import com.example.booksapplication.data.api.BooksApi
+import com.example.booksapplication.data.database.BooksDao
 import com.example.booksapplication.domain.repositories.BooksRepository
 import com.example.booksapplication.domain.repositories.RepositoriesLocator
 import com.example.booksapplication.utils.extensions.getBooks
@@ -32,7 +32,7 @@ class BooksRepositoryImpl(
     override suspend fun upsertAllBooks(offset: Int, query: String?) = withContext(Dispatchers.IO) {
         runCatching {
 //            val res = getAllBooksApi(offset, query)
-            val res = bookApi.getAllBooks(offset , query).getBooks()
+            val res = booksApi.getAllBooks(offset , query).getBooks()
             Log.d("INIT_BOOKS", "getAllBooks: query: ${query}, books: ${res.books}")
             res
         }.onSuccess { apiResponse ->

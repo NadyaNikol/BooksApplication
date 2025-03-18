@@ -14,5 +14,5 @@ import com.example.booksapplication.domain.entities.BookDbEntity
 )
 abstract class AppRoomDatabase : RoomDatabase(){
 
-    abstract fun getBookDao(): BookDao
+    abstract fun getBookDao(): BooksDao
 }

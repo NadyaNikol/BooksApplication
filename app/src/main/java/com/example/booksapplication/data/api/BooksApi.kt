@@ -10,7 +10,7 @@ import retrofit2.http.Query
 /**
  * Created by Nadya N. on 05.03.2025.
  */
-interface BookApi {
+interface BooksApi {
 
     @GET("search-books")
     suspend fun getAllBooks(
