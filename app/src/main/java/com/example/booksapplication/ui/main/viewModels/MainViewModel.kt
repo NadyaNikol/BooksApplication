@@ -67,7 +67,7 @@ class MainViewModel @Inject constructor(
 
     init {
         bookFlow.launchIn(viewModelScope)
-//        loadMoreItems()
+        loadMoreItems()
     }
 
     fun loadMoreItems(query: String = "") {
