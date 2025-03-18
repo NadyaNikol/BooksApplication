@@ -4,24 +4,24 @@ import android.util.Log
 import com.example.booksapplication.data.api.BooksApi
 import com.example.booksapplication.data.database.BooksDao
 import com.example.booksapplication.domain.repositories.BooksRepository
-import com.example.booksapplication.domain.repositories.RepositoriesLocator
 import com.example.booksapplication.utils.extensions.getBooks
 import com.example.booksapplication.utils.extensions.mapToDBEntity
 import com.example.booksapplication.utils.extensions.mapToUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 /**
  * Created by Nadya N. on 05.03.2025.
  */
-class BooksRepositoryImpl(
-    private val dao: BookDao = RepositoriesLocator.repository.getBookDao(),
-    private val bookApi: BookApi = DataSourceLocator.provideBookApi(),
+class BooksRepositoryImpl @Inject constructor(
+    private val dao: BooksDao,
+    private val booksApi: BooksApi,
 
     ): BooksRepository {
 
-    val booksFlow = dao.getAllBooks().map { it.mapToUI() }
+    override val booksFlow = dao.getAllBooks().map { it.mapToUI() }
 
     var isLastPage = false
 

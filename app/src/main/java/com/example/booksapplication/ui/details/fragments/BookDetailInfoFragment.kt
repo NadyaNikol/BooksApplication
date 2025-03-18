@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import com.example.booksapplication.databinding.FragmentBookDetailInfoBinding
 import com.example.booksapplication.ui.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookDetailInfoFragment :
     BaseFragment<FragmentBookDetailInfoBinding>(
         FragmentBookDetailInfoBinding::inflate

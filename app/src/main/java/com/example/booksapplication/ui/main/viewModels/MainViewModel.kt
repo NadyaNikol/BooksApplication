@@ -3,20 +3,25 @@ package com.example.booksapplication.ui.main.viewModels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.booksapplication.data.BooksRepositoryImpl
+import com.example.booksapplication.domain.repositories.BooksRepository
 import com.example.booksapplication.ui.MainFragmentPageableState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Created by Nadya N. on 10.12.2024.
  */
-class MainViewModel : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository: BooksRepository
+) : ViewModel() {
 
-    private val repository = BooksRepositoryImpl()
+//    private val repository = BooksRepositoryImpl()
 
 //    private val bookFlow = repository.booksFlow.onEach { books ->
 //        if (books.isEmpty()) {
@@ -46,14 +51,14 @@ class MainViewModel : ViewModel() {
     private val bookFlow = repository.booksFlow
         .onEach { books ->
             Log.d("INIT_BOOKS", ": ${books.size}")
-            if (books.isEmpty()) {
-                loadMoreItems()
-            }
+//            if (books.isEmpty()) {
+//                loadMoreItems()
+//            }
 
-            _uiStatePageable.update {
-                it.copy(
+            _uiStatePageable.update { state ->
+                state.copy(
                     isLoading = false,
-                    isLastPage = repository.isLastPage,
+//                    isLastPage = repository.isLastPage,
                     offset = books.size,
                     books = books
                 )

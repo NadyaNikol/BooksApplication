@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.safe.args)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.android.hilt)
 }
 
 android {
@@ -71,6 +72,10 @@ dependencies {
     // glide
     implementation(libs.glide)
     ksp(libs.compiler)
+
+    // hilt
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
 
     // gson
     implementation(libs.gson)
